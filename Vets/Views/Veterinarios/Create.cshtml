@@ -1,11 +1,12 @@
-﻿@model Vets.Models.Donos
+﻿@model Vets.Models.Veterinarios
+
 @{
     ViewData["Title"] = "Create";
 }
 
 <h1>Create</h1>
 
-<h4>Donos</h4>
+<h4>Veterinarios</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,14 +18,14 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NIF" class="control-label"></label>
-                <input asp-for="NIF" class="form-control" />
-                <span asp-validation-for="NIF" class="text-danger"></span>
+                <label asp-for="NumCedulaProf" class="control-label"></label>
+                <input asp-for="NumCedulaProf" class="form-control" />
+                <span asp-validation-for="NumCedulaProf" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Sexo" class="control-label"></label>
-                <input asp-for="Sexo" class="form-control" />
-                <span asp-validation-for="Sexo" class="text-danger"></span>
+                <label asp-for="Fotografia" class="control-label"></label>
+                <input asp-for="Fotografia" class="form-control" />
+                <span asp-validation-for="Fotografia" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -37,7 +38,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-© 2020 GitHub, Inc.

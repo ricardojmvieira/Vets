@@ -93,6 +93,7 @@ namespace Vets.Controllers
             }
 
             var donos = await db.Donos.FindAsync(id);
+         
             if (donos == null)
             {
                 return NotFound();
@@ -106,7 +107,7 @@ namespace Vets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,NIF")] Donos donos)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,NIF,Sexo")] Donos donos)
         {
             if (id != donos.ID)
             {

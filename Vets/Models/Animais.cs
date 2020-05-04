@@ -15,6 +15,7 @@ namespace Vets.Models
         }
         [Key]
         public int ID { get; set; }
+        [Required]
         public string Nome { get; set; }
         public string Especie { get; set; }
         public string Raca { get; set; }
@@ -26,10 +27,8 @@ namespace Vets.Models
         /// ...
         /// donFK int,
         /// foreign key (donoFk) references Donos (ID)
-
-
         [ForeignKey("Dono")] //anotação: vai associar o atributo 'DonoFk' ao atributo 'Dono' com a caracteristica de FX
-        public int DonoFX { get; set; } //donoFX int
+        public int DonoFK { get; set; } //donoFX int
         public Donos Dono { get; set; } //Reference Donos(ID)
 
         public ICollection<Consultas> ListaConsultas { get; set; }

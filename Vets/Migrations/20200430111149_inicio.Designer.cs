@@ -10,8 +10,8 @@ using Vets.Data;
 namespace Vets.Migrations
 {
     [DbContext(typeof(VetsDB))]
-    [Migration("20200406115659_configuracaoInicial")]
-    partial class configuracaoInicial
+    [Migration("20200430111149_inicio")]
+    partial class inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace Vets.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DonoFX")
+                    b.Property<int>("DonoFK")
                         .HasColumnType("int");
 
                     b.Property<string>("Especie")
@@ -38,6 +38,7 @@ namespace Vets.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Peso")
@@ -48,7 +49,7 @@ namespace Vets.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DonoFX");
+                    b.HasIndex("DonoFK");
 
                     b.ToTable("Animais");
                 });
@@ -89,10 +90,19 @@ namespace Vets.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("NIF")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(9)")
+                        .HasMaxLength(9);
 
                     b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)")
+                        .HasMaxLength(1);
 
                     b.HasKey("ID");
 
@@ -124,7 +134,7 @@ namespace Vets.Migrations
                 {
                     b.HasOne("Vets.Models.Donos", "Dono")
                         .WithMany("ListaAnimais")
-                        .HasForeignKey("DonoFX")
+                        .HasForeignKey("DonoFK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vets.Migrations
 {
-    public partial class configuracaoInicial : Migration
+    public partial class inicio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,9 @@ namespace Vets.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(nullable: true),
-                    NIF = table.Column<string>(nullable: true)
+                    Nome = table.Column<string>(maxLength: 40, nullable: false),
+                    NIF = table.Column<string>(maxLength: 9, nullable: false),
+                    Sexo = table.Column<string>(maxLength: 1, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,19 +43,19 @@ namespace Vets.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(nullable: false),
                     Especie = table.Column<string>(nullable: true),
                     Raca = table.Column<string>(nullable: true),
                     Peso = table.Column<double>(nullable: false),
                     Foto = table.Column<string>(nullable: true),
-                    DonoFX = table.Column<int>(nullable: false)
+                    DonoFK = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Animais", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Animais_Donos_DonoFX",
-                        column: x => x.DonoFX,
+                        name: "FK_Animais_Donos_DonoFK",
+                        column: x => x.DonoFK,
                         principalTable: "Donos",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -89,9 +90,9 @@ namespace Vets.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Animais_DonoFX",
+                name: "IX_Animais_DonoFK",
                 table: "Animais",
-                column: "DonoFX");
+                column: "DonoFK");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Consultas_AnimalFK",
