@@ -1,13 +1,13 @@
-﻿@model Vets.Models.Veterinarios
+﻿@model Vets.Models.Veterinarios 
+    @*obter, nesta vies, apenas um unico objeto*@
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do " +Model.Nome;
 }
 
-<h1>Details</h1>
+<h1>Veterinário</h1>
 
 <div>
-    <h4>Veterinarios</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -26,11 +26,44 @@
             @Html.DisplayNameFor(model => model.Fotografia)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fotografia)
+            <img src="~/Imagens/Vets/@Model.Fotografia" alt="fotografia de @Model.Nome" title="@Model.Nome" height="300"/>
         </dd>
     </dl>
 </div>
+
+@* Lista das Consultas do Veterinario *@
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <h2>Lista de Consultas</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Data da Consulta
+            </th>
+            <th>
+                Animal
+            </th>
+            <th>
+                Dono
+            </th>
+        </tr>
+        @foreach (var consulta in Model.ListaConsultas)
+        {
+        <tr>
+            <td>
+                @*data da consulta*@
+            </td>
+            <td>
+                @*nome do animal*@
+            </td>
+            <td>
+                @*nome do dono do animal*@
+            </td>
+        </tr>
+        }
+    </table>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Editar</a> |
+    <a asp-action="Index">Regressar à Listagem</a>
 </div>

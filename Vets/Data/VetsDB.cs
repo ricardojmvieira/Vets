@@ -42,9 +42,9 @@ namespace Vets.Data
                 );
 
             modelBuilder.Entity<Veterinarios>().HasData(
-               new Veterinarios { ID = 1, Nome = "Maria Pinto", NumCedulaProf = " vet-34589", Fotografia = "Maria.jpg" },
-               new Veterinarios { ID = 2, Nome = "Ricardo Ribeiro", NumCedulaProf = " vet-34590", Fotografia = "Ricardo.jpg" },
-               new Veterinarios { ID = 3, Nome = "José Soares", NumCedulaProf = " vet-56732", Fotografia = "Jose.jpg" }
+               new Veterinarios { ID = 1, Nome = "Maria Pinto", NumCedulaProf = "vet-34589", Fotografia = "Maria.jpg" },
+               new Veterinarios { ID = 2, Nome = "Ricardo Ribeiro", NumCedulaProf = "vet-34590", Fotografia = "Ricardo.jpg" },
+               new Veterinarios { ID = 3, Nome = "José Soares", NumCedulaProf = "vet-56732", Fotografia = "Jose.jpg" }
                );
 
             modelBuilder.Entity<Animais>().HasData(

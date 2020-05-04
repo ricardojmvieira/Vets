@@ -19,7 +19,12 @@ namespace Vets.Models
 
         public string Nome { get; set; }
 
+        [Display(Name = "Nº Cédula Profissional")]
+        [RegularExpression("vet-[0-9]{5}", ErrorMessage = "O {0} deve ser escrito em minúsculas. <br />Começar por 'vet-', seguido de 5 algarismos.")]
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório.")]
+        [StringLength(9)]
         public string NumCedulaProf { get; set; }
+
         public string Fotografia { get; set; }
 
         public ICollection<Consultas> ListaConsultas { get; set; }
