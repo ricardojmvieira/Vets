@@ -26,18 +26,26 @@ namespace Vets.Controllers
         }
 
         // GET: Veterinarios/Details/5
+        /// <summary>
+        /// Mostra os dados de um veterinario, acedendo aos dados relativos a ele,
+        /// associados ás consultas, aos seua animais e respetivos donos
+        /// </summary>
+        /// <param name="id">identificador do veterinario a apresentar os detalhes</param>
+        /// <returns></returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                //return NotFound();
+                return RedirectToAction("Index");
             }
-
+            //acesso aos dados sera feito em modo 'lazy loading'
+            //adicionar
             var veterinarios = await _context.Veterinarios
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (veterinarios == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
 
             return View(veterinarios);

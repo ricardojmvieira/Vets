@@ -51,12 +51,19 @@
         <tr>
             <td>
                 @*data da consulta*@
+                @consulta.Data
             </td>
             <td>
                 @*nome do animal*@
+                <a asp-action="Details" asp-controller="Animais" asp-route-id="@consulta.AnimalFK">
+                    @consulta.Animal.Nome
+                </a>
             </td>
             <td>
                 @*nome do dono do animal*@
+                <a asp-action="Details" asp-controller="Donos" asp-route-id="@consulta.Animal.DonoFK">
+                    @consulta.Animal.Dono.Nome
+                </a>
             </td>
         </tr>
         }

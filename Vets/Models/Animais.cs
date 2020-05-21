@@ -29,8 +29,8 @@ namespace Vets.Models
         /// foreign key (donoFk) references Donos (ID)
         [ForeignKey("Dono")] //anotação: vai associar o atributo 'DonoFk' ao atributo 'Dono' com a caracteristica de FX
         public int DonoFK { get; set; } //donoFX int
-        public Donos Dono { get; set; } //Reference Donos(ID)
+        public virtual Donos Dono { get; set; } //Reference Donos(ID)
 
-        public ICollection<Consultas> ListaConsultas { get; set; }
+        public virtual ICollection<Consultas> ListaConsultas { get; set; }
     }
 }

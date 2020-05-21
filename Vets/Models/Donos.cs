@@ -31,6 +31,6 @@ namespace Vets.Models
         [RegularExpression("[mfMF]")]
         public string Sexo { get; set; }
         //select * from Animais a, Donos d where a.DonoFK = d.ID and d.id = ?
-        public ICollection<Animais> ListaAnimais { get; set; }
+        public virtual ICollection<Animais> ListaAnimais { get; set; }
     }
 }

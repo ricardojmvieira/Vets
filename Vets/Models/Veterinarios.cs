@@ -27,6 +27,6 @@ namespace Vets.Models
 
         public string Fotografia { get; set; }
 
-        public ICollection<Consultas> ListaConsultas { get; set; }
+        public virtual ICollection<Consultas> ListaConsultas { get; set; }
     }
 }
