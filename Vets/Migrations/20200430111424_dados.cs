@@ -29,9 +29,9 @@ namespace Vets.Migrations
                 columns: new[] { "ID", "Fotografia", "Nome", "NumCedulaProf" },
                 values: new object[,]
                 {
-                    { 1, "Maria.jpg", "Maria Pinto", " vet-34589" },
-                    { 2, "Ricardo.jpg", "Ricardo Ribeiro", " vet-34590" },
-                    { 3, "Jose.jpg", "José Soares", " vet-56732" }
+                    { 1, "Maria.jpg", "Maria Pinto", "vet-34589" },
+                    { 2, "Ricardo.jpg", "Ricardo Ribeiro", "vet-34590" },
+                    { 3, "Jose.jpg", "José Soares", "vet-56732" }
                 });
 
             migrationBuilder.InsertData(

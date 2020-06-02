@@ -58,7 +58,7 @@ namespace Vets.Migrations
                         column: x => x.DonoFK,
                         principalTable: "Donos",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,13 +80,13 @@ namespace Vets.Migrations
                         column: x => x.AnimalFK,
                         principalTable: "Animais",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Consultas_Veterinarios_VeterinarioFK",
                         column: x => x.VeterinarioFK,
                         principalTable: "Veterinarios",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

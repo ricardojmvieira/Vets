@@ -52,21 +52,21 @@ namespace Vets.Migrations
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "NumCedulaProf",
-                value: " vet-34589");
+                value: "vet-34589");
 
             migrationBuilder.UpdateData(
                 table: "Veterinarios",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "NumCedulaProf",
-                value: " vet-34590");
+                value: "vet-34590");
 
             migrationBuilder.UpdateData(
                 table: "Veterinarios",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "NumCedulaProf",
-                value: " vet-56732");
+                value: "vet-56732");
         }
     }
 }

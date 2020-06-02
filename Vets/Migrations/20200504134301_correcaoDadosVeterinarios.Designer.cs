@@ -476,7 +476,7 @@ namespace Vets.Migrations
                     b.HasOne("Vets.Models.Donos", "Dono")
                         .WithMany("ListaAnimais")
                         .HasForeignKey("DonoFK")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -485,13 +485,13 @@ namespace Vets.Migrations
                     b.HasOne("Vets.Models.Animais", "Animal")
                         .WithMany("ListaConsultas")
                         .HasForeignKey("AnimalFK")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Vets.Models.Veterinarios", "Veterinario")
                         .WithMany("ListaConsultas")
                         .HasForeignKey("VeterinarioFK")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

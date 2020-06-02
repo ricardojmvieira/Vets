@@ -451,21 +451,21 @@ namespace Vets.Migrations
                             ID = 1,
                             Fotografia = "Maria.jpg",
                             Nome = "Maria Pinto",
-                            NumCedulaProf = " vet-34589"
+                            NumCedulaProf = "vet-34589"
                         },
                         new
                         {
                             ID = 2,
                             Fotografia = "Ricardo.jpg",
                             Nome = "Ricardo Ribeiro",
-                            NumCedulaProf = " vet-34590"
+                            NumCedulaProf = "vet-34590"
                         },
                         new
                         {
                             ID = 3,
                             Fotografia = "Jose.jpg",
                             Nome = "José Soares",
-                            NumCedulaProf = " vet-56732"
+                            NumCedulaProf = "vet-56732"
                         });
                 });
 
@@ -474,7 +474,7 @@ namespace Vets.Migrations
                     b.HasOne("Vets.Models.Donos", "Dono")
                         .WithMany("ListaAnimais")
                         .HasForeignKey("DonoFK")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -483,13 +483,13 @@ namespace Vets.Migrations
                     b.HasOne("Vets.Models.Animais", "Animal")
                         .WithMany("ListaConsultas")
                         .HasForeignKey("AnimalFK")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Vets.Models.Veterinarios", "Veterinario")
                         .WithMany("ListaConsultas")
                         .HasForeignKey("VeterinarioFK")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
