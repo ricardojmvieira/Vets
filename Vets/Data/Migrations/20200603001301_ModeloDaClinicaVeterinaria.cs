@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Vets.Migrations
+namespace Vets.Data.Migrations
 {
-    public partial class inicio : Migration
+    public partial class ModeloDaClinicaVeterinaria : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,7 @@ namespace Vets.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(nullable: true),
-                    NumCedulaProf = table.Column<string>(nullable: true),
+                    NumCedulaProf = table.Column<string>(maxLength: 9, nullable: false),
                     Fotografia = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -58,7 +58,7 @@ namespace Vets.Migrations
                         column: x => x.DonoFK,
                         principalTable: "Donos",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,13 +80,13 @@ namespace Vets.Migrations
                         column: x => x.AnimalFK,
                         principalTable: "Animais",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Consultas_Veterinarios_VeterinarioFK",
                         column: x => x.VeterinarioFK,
                         principalTable: "Veterinarios",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
