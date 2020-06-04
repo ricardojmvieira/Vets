@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using Vets.Models;
 
 namespace Vets.Controllers
 {
+    [Authorize] //fecha o acesso a qualquer recurso da classe a Utilizadores não autenticados
     public class VeterinariosController : Controller
     {
         private readonly VetsDB _context;
@@ -24,6 +26,7 @@ namespace Vets.Controllers
         }
 
         // GET: Veterinarios
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Veterinarios.ToListAsync());
@@ -98,6 +101,8 @@ namespace Vets.Controllers
         /// Apresenta o formulário de Criação de um novo Veterinario
         /// </summary>
         /// <returns></returns>
+        /// 
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -108,6 +113,7 @@ namespace Vets.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Nome,NumCedulaProf,Fotografia")] Veterinarios veterinario, IFormFile fotoVet)
         {
             //processar o ficheiro da Fotografica
@@ -198,6 +204,7 @@ namespace Vets.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,NumCedulaProf,Fotografia")] Veterinarios veterinarios)
         {
             if (id != veterinarios.ID)

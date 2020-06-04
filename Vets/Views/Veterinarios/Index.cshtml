@@ -6,9 +6,17 @@
 
 <h1>Veterinários</h1>
 
+@if (User.Identity.IsAuthenticated)
+{
 <p>
     <a asp-action="Create">Adicionar Veterinário</a>
 </p>
+}
+else
+{
+    <br/>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -39,9 +47,15 @@
                 </a>
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Apagar</a>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                <text>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Detalhes</a> |
+                    <a asp-actin="Delete" asp-route-id="@item.ID">Apagar</a>
+                </text>
+                }
             </td>
         </tr>
 }
