@@ -28,5 +28,13 @@ namespace Vets.Models
         public string Fotografia { get; set; }
 
         public virtual ICollection<Consultas> ListaConsultas { get; set; }
+
+        //o atributo seguinte é responsavel por concretizar o relacionamento
+        //entre um veterinario e o correspondente utilizador que se autentica
+
+        /// <summary>
+        /// este atributo irá receber o ID do utilizador que se autentica
+        /// </summary>
+        public string UserName { get; set; }
     }
 }

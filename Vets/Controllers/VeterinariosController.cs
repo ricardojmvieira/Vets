@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,12 +18,26 @@ namespace Vets.Controllers
     [Authorize] //fecha o acesso a qualquer recurso da classe a Utilizadores não autenticados
     public class VeterinariosController : Controller
     {
+        /// <summary>
+        /// variavel que identifica a BD do nosso projeto
+        /// </summary>
         private readonly VetsDB _context;
+
+        /// <summary>
+        /// variavel que contem os dados do ambiente do servidor
+        /// Em particular, onde estão os ficheiros guardados, no disco rigido do servidor
+        /// </summary>
         private readonly IWebHostEnvironment _ambiente;
-        public VeterinariosController(VetsDB context, IWebHostEnvironment ambiente)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly UserManager<ApplicationUser> _userManager;
+        public VeterinariosController(VetsDB context, IWebHostEnvironment ambiente, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _ambiente = ambiente; // estou a injetar os dados do Servidor Web no meu método
+            _userManager = userManager;
         }
 
         // GET: Veterinarios
@@ -81,11 +96,12 @@ namespace Vets.Controllers
             //na pratica, far-se-á esta consulta
             //select * 
             //from Consultas c, Animais a, Donos d, Veterinarios v 
-            //where c.veterinarioFK=v.ID and c.AnimalFK=a.DonoFK=d.ID and v.ID=id
+            //where c.veterinarioFK=v.ID and c.AnimalFK=a.DonoFK=d.ID and v.ID=id and v.UserName = ASPNetUsers.Id
             var veterinarios = await _context.Veterinarios
                 .Include(v=>v.ListaConsultas)
                 .ThenInclude(a=>a.Animal)
                 .ThenInclude(d=>d.Dono)
+                .Where(v => v.ID == id && v.UserName == _userManager.GetUserId(User))
                 .FirstOrDefaultAsync(m => m.ID == id);
 
             if (veterinarios == null)

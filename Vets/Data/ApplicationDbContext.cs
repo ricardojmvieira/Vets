@@ -10,14 +10,23 @@ namespace Vets.Data
 {
     
     /// <summary>
-    /// Classe que adiciona atributos ao User pré-configurado
-    /// ie, vou adicionar atributis à classe IdentityUser
-    /// Tem as mesmas caracteristicas 
+    /// Esta classe estende o conjunto de dados de um utilizador, criado a quando da Identity
+    /// É necessario, alterar a definição da BD e referenciar a nossa aplicação para usar este novo utilizador
+    /// Em todos os sitios onde se referenciam 'IdentityUser' deverá referenciar-se 'ApplicationUser
     /// </summary>
     public class ApplicationUser: IdentityUser
     {
+        /// <summary>
+        /// nome da pessoa que se regista, e posteriormente se autentica
+        /// </summary>
         public string Nome { get; set; }
+        /// <summary>
+        /// avatar da pessoa que se regista, e posteriormente se autentica
+        /// </summary>
         public string Fotografia { get; set; }
+        /// <summary>
+        /// registo da hora+data da criação do registo
+        /// </summary>
         public DateTime Timestamp { get; set; }
     }
 
