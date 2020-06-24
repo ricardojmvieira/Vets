@@ -1,16 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Vets.Models;
 
 namespace Vets.Data
 {
+    
+    /// <summary>
+    /// Classe que adiciona atributos ao User pré-configurado
+    /// ie, vou adicionar atributis à classe IdentityUser
+    /// Tem as mesmas caracteristicas 
+    /// </summary>
+    public class ApplicationUser: IdentityUser
+    {
+        public string Nome { get; set; }
+        public string Fotografia { get; set; }
+        public DateTime Timestamp { get; set; }
+    }
+
     /// <summary>
     /// classe para representar a base de dados VeterinariosDB
+    /// Neste momento, está a referenciar o novo tipo de Utilizador
     /// </summary>
-    public class VetsDB : IdentityDbContext
+    public class VetsDB : IdentityDbContext<ApplicationUser>
     {
         /// <summary>
         /// Construtor da classe
